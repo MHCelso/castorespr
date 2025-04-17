@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
-@RequestMapping("/public")
+@RequestMapping("/")
 @RequiredArgsConstructor
-public class PublicController {
-    @GetMapping("/home")
-    public String showHomePage() {
+public class IndexController {
+    @GetMapping("/")
+    public String showIndexPage() {
 
-        return "home";
+        return "index";
     }
 }
