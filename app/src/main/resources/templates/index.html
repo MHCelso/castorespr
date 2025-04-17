@@ -6,10 +6,31 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>index</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-<h1>Desde Index</h1>
+<div class="container mt-5">
+    <table class="table caption-top">
+        <caption><h4>Inventario</h4></caption>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha de creacion</th>
+            <th scope="col">Fecha de actualizacion</th>
+            <th scope="col">Fecha de eliminacion</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Registrado por</th>
+        </tr>
+        </thead>
+        <tbody id="tabla-body">
+        </tbody>
+    </table>
+</div>
 </body>
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
 <script type="text/javascript" th:src="@{/js/axios.min.js}" defer></script>
 <script type="text/javascript" th:src="@{/js/main.js}" defer></script>
 </html>
