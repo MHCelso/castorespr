@@ -24,8 +24,12 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/v1/home").authenticated()
-                        .requestMatchers("/v1/admin").hasAuthority("ADMIN").anyRequest().authenticated()
+                        .requestMatchers("/home").authenticated()
+                        .requestMatchers("/v1/api/**").authenticated()
+                        .requestMatchers("/user").hasAuthority("USER")
+                        .requestMatchers("/admin").hasAuthority("ADMIN")
+                        .anyRequest()
+                        .authenticated()
                 )
                 .formLogin(Customizer.withDefaults())
                 .build();

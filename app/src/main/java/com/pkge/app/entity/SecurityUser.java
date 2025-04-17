@@ -13,6 +13,7 @@ import java.util.Collections;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SecurityUser implements UserDetails {
+
     private User user;
 
     @Override
