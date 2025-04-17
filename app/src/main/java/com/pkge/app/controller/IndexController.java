@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class IndexController {
-    @GetMapping("/")
+    @GetMapping("index")
     public String showIndexPage() {
 
         return "index";
