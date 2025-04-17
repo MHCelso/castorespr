@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk
 WORKDIR /app
 COPY target/app-0.0.1.jar app.jar
 EXPOSE 8080
