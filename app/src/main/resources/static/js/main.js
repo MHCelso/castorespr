@@ -9,6 +9,12 @@ axios
 
             const fila = document.createElement('tr');
 
+            let deletedAt = "-";
+
+            if (key.deletedAt !== null) {
+                deletedAt = key.deletedAt;
+            }
+
             fila.innerHTML = `
         <td>${key.id}</td>
         <td>${key.name}</td>
@@ -16,7 +22,7 @@ axios
         <td>${key.quantity}</td>
         <td>${key.createdAt}</td>
         <td>${key.updatedAt}</td>
-        <td>${key.deletedAt}</td>
+        <td>${deletedAt}</td>
         <td>${key.status}</td>
         <td>${key.addedByUserId}</td>
       `;
