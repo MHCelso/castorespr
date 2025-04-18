@@ -27,6 +27,6 @@ public class Product {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
     private String status;
-    @Column(name = "added_by_user_id")
-    private int addedByUserId;
+    @Column(name = "added_by_name")
+    private String addedByName;
 }

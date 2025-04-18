@@ -2,21 +2,23 @@ axios
     .get('http://localhost:8080/v1/api/products')
     .then(response => {
         const data = response.data;
+        setTable(data);
+    }).catch(error => {
+        console.error(error);
+    });
 
-        const tablaBody = document.getElementById('body-table');
+function setTable(data) {
+    const tablaBody = document.getElementById('body-table');
 
-        data.forEach(key => {
+    data.forEach(key => {
+        const fila = document.createElement('tr');
+        let deletedAt = "-";
 
-            const fila = document.createElement('tr');
+        if (key.deletedAt !== null) {
+            deletedAt = key.deletedAt;
+        }
 
-            let deletedAt = "-";
-
-            if (key.deletedAt !== null) {
-                deletedAt = key.deletedAt;
-            }
-
-            fila.innerHTML = `
-        <td>${key.id}</td>
+        fila.innerHTML = `
         <td>${key.name}</td>
         <td>${key.price}</td>
         <td>${key.quantity}</td>
@@ -24,48 +26,9 @@ axios
         <td>${key.updatedAt}</td>
         <td>${deletedAt}</td>
         <td>${key.status}</td>
-        <td>${key.addedByUserId}</td>
+        <td>${key.addedByName}</td>
       `;
 
-            tablaBody.appendChild(fila);
-        });
-
-    })
-    .catch(error => {
-        console.error(error);
+        tablaBody.appendChild(fila);
     });
-
-
-function setTable(data) {
-    const table = document.createElement("table");
-    const head = document.createElement("thead");
-    const body = document.createElement("tbody");
-    const headRow = document.createElement("tr");
-
-    Object.keys(data[0]).forEach((key) => {
-        const cellHead = document.createElement("th");
-
-        cellHead.textContent = key;
-
-        headRow.appendChild(cellHead);
-    });
-
-    head.appendChild(headRow);
-    table.appendChild(head);
-
-    data.forEach((key) => {
-        const rowBody = document.createElement("tr");
-
-        Object.values(key).forEach((value) => {
-            const cellBody = document.createElement("td");
-            cellBody.textContent = value;
-            rowBody.appendChild(cellBody);
-        });
-
-        body.appendChild(rowBody);
-    });
-
-    table.appendChild(body);
-
-    document.body.appendChild(table);
 }
