@@ -3,7 +3,7 @@ axios
     .then(response => {
         const data = response.data;
 
-        const tablaBody = document.getElementById('tabla-body');
+        const tablaBody = document.getElementById('body-table');
 
         data.forEach(key => {
 
