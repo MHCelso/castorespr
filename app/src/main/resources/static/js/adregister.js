@@ -19,25 +19,34 @@ registerButton.addEventListener('click', e => {
         "responseType":'json'
     }).then(response => {
         console.log(JSON.stringify(response, null, 3));
+        name.value = "";
+        price.value = 0.0;
+        quantity.value = 0;
+        status.value = "ACTIVO";
     }).catch(error => {
         console.error(JSON.stringify(error, null, 3));
     });
 
-    name.value = "";
-    price.value = 0.0;
-    quantity.value = 0;
-    status.value = "ACTIVO";
 });
 
 function minMaxInput(element, min, zeroAllowed){
-    if (element.value == 0 && zeroAllowed) {
-
+    if (element.value === 0 && zeroAllowed) {
         return;
     }
 
     if (element.value < min) {
         element.value = min;
 
-        return;
+        const spanInfo = element.parentElement ? element.parentElement.querySelector('#spanInfoId') : null;
+
+        if (spanInfo) {
+        } else {
+            const spanInfo = document.createElement('span');
+
+            spanInfo.id = 'spanInfoId';
+            spanInfo.style.color = 'red';
+            spanInfo.textContent = 'Solo Valores Mayores a: '+min;
+            element.parentElement.appendChild(spanInfo);
+        }
     }
 }

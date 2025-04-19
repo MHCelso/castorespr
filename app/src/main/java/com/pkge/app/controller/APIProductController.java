@@ -11,8 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,19 +40,15 @@ public class APIProductController {
     @Builder
     public ResponseEntity<Object> productRegister(HttpServletRequest request) {
         try {
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-            String formattedDate = now.format(formatter);
-
             ProductDTO productDTO = new ProductDTO.Builder()
-                    .name(request.getParameter("name"))
+                    .name(request.getParameter("name").trim())
                     .price(Double.parseDouble(request.getParameter("price")))
                     .quantity(Integer.parseInt(request.getParameter("quantity")))
-                    .createdAt(formattedDate)
-                    .updatedAt(formattedDate)
+                    .createdAt(null)
+                    .updatedAt(null)
                     .deletedAt(null)
                     .status(request.getParameter("status"))
-                    .addedByName("me")
+                    .addedByName(null)
                     .build();
 
             Product product = productService.addProduct(productDTO);
