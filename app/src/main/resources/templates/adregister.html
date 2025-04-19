@@ -1,0 +1,43 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registrar</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div style="display: flex;" class="container mt-5">
+    <div class="row g-3 align-items-center">
+        <form id="registerForm">
+            <div class="col">
+                <label for="name" class="col-form-label">Nombre:</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required/>
+            </div>
+            <div class="col">
+                <label for="price" class="col-form-label">Precio:</label>
+                <input onchange="minMaxInput(this, 0, true)" type="number" step="0.01" name="price" id="price" class="form-control" placeholder="Precio" required/>
+            </div>
+            <div class="col">
+                <label for="quantity" class="col-form-label">Cantida:</label>
+                <input onchange="minMaxInput(this, 0, true)" type="number" name="quantity" id="quantity" class="form-control" placeholder="Cantidad" required/>
+            </div>
+            <div class="col">
+                <label for="status" class="col-form-label">Estatus:</label>
+                <select type="text" class="form-select" id="status" name="status" size="2">
+                    <option value="ACTIVO" selected>ACTIVO</option>
+                    <option value="INACTIVO">INACTIVO</option>
+                </select>
+            </div>
+            <button id="registerButton" class="btn btn-primary">Registrar</button>
+            <a role="button" class="btn btn-secondary" th:href="@{/}">Inventario</a>
+        </form>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
+<script type="text/javascript" th:src="@{/js/axios.min.js}" defer></script>
+<script type="text/javascript" th:src="@{/js/adregister.js}" defer></script>
+</html>

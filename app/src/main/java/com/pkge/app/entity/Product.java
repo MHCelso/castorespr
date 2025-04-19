@@ -21,11 +21,11 @@ public class Product {
     private Double price;
     private Integer quantity;
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private String createdAt;
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    private String updatedAt;
     @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
+    private String deletedAt;
     private String status;
     @Column(name = "added_by_name")
     private String addedByName;
