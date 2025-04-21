@@ -71,7 +71,8 @@ public class APIProductController {
     @PutMapping("quantity/update/{id}")
     public ResponseEntity<Object> productQuantityUpdate(@PathVariable Integer id, HttpServletRequest request) {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String action = request.getParameter("action").trim();
 
-        return ResponseEntity.ok(productService.updateQuantityProduct(id, quantity));
+        return ResponseEntity.ok(productService.updateQuantityProduct(id, quantity, action));
     }
 }

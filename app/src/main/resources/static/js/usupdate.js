@@ -13,16 +13,9 @@ function setTable(data) {
     data.forEach(key => {
         const fila = document.createElement('tr');
         let deletedAt = "-";
-        let statusToChange = "ACTIVAR";
-        let statusToChangeRequest = "ACTIVO";
 
         if (key.deletedAt !== null) {
             deletedAt = key.deletedAt;
-        }
-
-        if (key.status === "ACTIVO") {
-            statusToChange = "DESACTIVAR";
-            statusToChangeRequest = "INACTIVO";
         }
 
         fila.innerHTML = `
@@ -31,7 +24,7 @@ function setTable(data) {
         <td>${key.price}</td>
         <td>
           <input 
-            onchange="minMaxInputUpdate(this, ${key.quantity}, true)" 
+            onchange="minMaxUsInputUpdate(this, 0, ${key.quantity}, true)" 
             type="number"
             class="form-control"
             id="iquantity-${key.id}"
@@ -41,13 +34,7 @@ function setTable(data) {
         <td>${key.createdAt}</td>
         <td>${key.updatedAt}</td>
         <td>${deletedAt}</td>
-        <td>
-          <button 
-            class="btn btn-link" 
-            id="status-${key.id}">
-            ${statusToChange}
-          </button>
-        </td>
+        <td>${key.status}</td>
         <td>${key.addedByName}</td>
         <td>
           <button
@@ -61,29 +48,8 @@ function setTable(data) {
 
         tableBody.appendChild(fila);
 
-        const statusButton = document.getElementById(`status-${key.id}`);
         const quantityButton = document.getElementById(`quantity-${key.id}`);
         const iQuantityButton = document.getElementById(`iquantity-${key.id}`);
-
-        statusButton.addEventListener("click", event => {
-            event.preventDefault();
-
-            const formData = new FormData();
-
-            formData.append("status", statusToChangeRequest);
-
-            const url = `http://localhost:8080/v1/api/status/update/${key.id}`;
-
-            axios.put(url, formData, {
-                "headers": {"content-type": 'application/x-www-form-urlencoded'},
-                "responseType":'json'
-            }).then(response => {
-                console.log('Estado actualizado:', response.data);
-                window.location.reload(true);
-            }).catch(error => {
-                console.error('Error al realizar la solicitud:', error);
-            });
-        });
 
         quantityButton.addEventListener("click", event => {
             event.preventDefault();
@@ -91,7 +57,7 @@ function setTable(data) {
             const formDataQuantity = new FormData();
 
             formDataQuantity.append("quantity", iQuantityButton.value);
-            formDataQuantity.append("action", "ENTRADA");
+            formDataQuantity.append("action", "SALIDA");
 
             const url = `http://localhost:8080/v1/api/quantity/update/${key.id}`;
 
@@ -108,24 +74,40 @@ function setTable(data) {
     });
 }
 
-function minMaxInputUpdate(element, min, zeroAllowed){
+function minMaxUsInputUpdate(element, min, max, zeroAllowed){
     if (element.value === 0 && zeroAllowed) {
         return;
     }
 
-    if (element.value < min) {
+    if(element.value < min){
         element.value = min;
 
-        const spanInfo = element.parentElement ? element.parentElement.querySelector('#spanInfoIdUpdate') : null;
+        const spanInfo = element.parentElement ? element.parentElement.querySelector('#spanInfo') : null;
 
         if (spanInfo) {
         } else {
             const spanInfo = document.createElement('span');
 
-            spanInfo.id = 'spanInfoIdUpdate';
+            spanInfo.id = 'spanInfo';
             spanInfo.style.color = 'red';
             spanInfo.textContent = 'No puedes sacar';
             element.parentElement.appendChild(spanInfo);
+        }
+    }
+
+    if(element.value > max) {
+        element.value = max;
+
+        const spanInfoU = element.parentElement ? element.parentElement.querySelector('#spanInfoIdUpdate') : null;
+
+        if (spanInfoU) {
+        } else {
+            const spanInfoU = document.createElement('span');
+
+            spanInfoU.id = 'spanInfoIdUpdate';
+            spanInfoU.style.color = 'red';
+            spanInfoU.textContent = 'No puedes meter';
+            element.parentElement.appendChild(spanInfoU);
         }
     }
 }

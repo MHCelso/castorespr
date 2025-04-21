@@ -84,10 +84,78 @@ public class ProductService {
         return productRepository.statusUpdateProduct(id, status, deletedDate, updatedDate);
     }
 
-    public int updateQuantityProduct(int id, int quantity) {
+    public int updateQuantityProduct(int id, int quantity, String action) {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String updatedDate = now.format(formatter);
+
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        SecurityContextController securityController = new SecurityContextController();
+        String userName = securityController.getSecurityContextData();
+
+        User user = userRepository.findByUsername(userName);
+
+        if (action.equals("ENTRADA")) {
+            if (product.getQuantity() < quantity && quantity > 0) {
+                History history = new History();
+
+                history.setProductId(id);
+                history.setQuantity(quantity - product.getQuantity());
+                history.setActionType(action);
+                history.setCreatedAt(updatedDate);
+                history.setAddedByName(user.getName());
+
+                historyRepository.save(history);
+
+                return productRepository.quantityUpdateProduct(id, quantity, updatedDate);
+            }
+
+            if (product.getQuantity() < quantity && quantity == 0) {
+                History history = new History();
+
+                history.setProductId(id);
+                history.setQuantity(quantity);
+                history.setActionType(action);
+                history.setCreatedAt(updatedDate);
+                history.setAddedByName(user.getName());
+
+                historyRepository.save(history);
+
+                return productRepository.quantityUpdateProduct(id, quantity, updatedDate);
+            }
+
+        } else {
+            if (product.getQuantity() > quantity && quantity > 0) {
+                History history = new History();
+
+                history.setProductId(id);
+                history.setQuantity(product.getQuantity() - quantity);
+                history.setActionType(action);
+                history.setCreatedAt(updatedDate);
+                history.setAddedByName(user.getName());
+
+                historyRepository.save(history);
+
+                return productRepository.quantityUpdateProduct(id, quantity, updatedDate);
+            }
+
+            if (product.getQuantity() > quantity && quantity == 0) {
+                History history = new History();
+
+                history.setProductId(id);
+                history.setQuantity(product.getQuantity());
+                history.setActionType(action);
+                history.setCreatedAt(updatedDate);
+                history.setAddedByName(user.getName());
+
+                historyRepository.save(history);
+
+                return productRepository.quantityUpdateProduct(id, quantity, updatedDate);
+            }
+
+        }
 
         return productRepository.quantityUpdateProduct(id, quantity, updatedDate);
     }
