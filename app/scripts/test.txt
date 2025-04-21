@@ -1,0 +1,36 @@
+1.1) Describe el funcionamiento general de la sentencia JOIN.
+● Permite enlazar los datos de dos o más tablas mediante sus llaves primarias para realizar una
+consulta.
+
+1.2) ¿Cuáles son los tipos de JOIN y cuál es el funcionamiento de los mismos?
+● inner join: muestra un resultado si hay coincidencias.
+● left join: muestra principalmente los datos de la tabla izquierda y sus coincidencias con las
+tablas relacionadas.
+● right join: principalmente la tabla derecha y coincidencias con las otras.
+● full join: muestra los datos de todas las tablas relacionadas y sus coincidencias con o sin
+resultados.
+
+1.3) ¿Cuál es el funcionamiento general de los TRIGGER y qué propósito tienen?
+● Ejecuta una sentencia si se cumple la condición definida.
+
+1.4) ¿Qué es y para qué sirve un STORED PROCEDURE?
+● Es un procedimiento creado para realizar un proceso específico, puede ser ejecutado en
+cualquier momento y es reutilizable.
+
+
+Hacer las consultas necesarias para:
+1.5) Traer todos los productos que tengan una venta.
+
+● select productos.nombre as productos from productos inner join ventas on
+ventas.idProducto = productos.idProductos group by productos;
+
+1.6) Traer todos los productos que tengan ventas y la cantidad total de productos vendidos.
+● select productos.nombre as productos, sum(ventas.cantidad) as total from productos right join
+ventas on ventas.idProducto = productos.idProductos group by productos;
+
+1.7) Traer todos los productos (independientemente de si tienen ventas o no) y la suma total ($)
+vendida por producto.
+● select p.nombre as productos, coalesce(sum(p.precio * v.cantidad), 0) as venta_total
+from productos p left join ventas v on v.idProducto = p.idProductos
+group by productos;
+
