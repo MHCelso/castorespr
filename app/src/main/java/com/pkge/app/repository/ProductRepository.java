@@ -15,6 +15,7 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findAll();
     Optional<Product> findById(Integer id);
+    List<Product> findByStatus(String status);
 
     @Modifying
     @Transactional

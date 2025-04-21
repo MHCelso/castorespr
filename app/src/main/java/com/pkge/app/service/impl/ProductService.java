@@ -28,6 +28,15 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
+        SecurityContextController securityController = new SecurityContextController();
+        String userName = securityController.getSecurityContextData();
+
+        User user = userRepository.findByUsername(userName);
+
+        if (user.getRole().equals("USER")) {
+            return productRepository.findByStatus("ACTIVO");
+        }
+
         return productRepository.findAll();
     }
 
