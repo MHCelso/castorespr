@@ -16,4 +16,10 @@ public class AdminViewsController {
 
         return "adregister";
     }
+
+    @GetMapping("/update")
+    public String showUpdatePage() {
+
+        return "adupdate";
+    }
 }

@@ -1,0 +1,54 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Actualizar Inventario</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div style="display: flex; flex-wrap: nowrap; flex-flow: nowrap; color: whitesmoke;" class="container text-center mt-5">
+    <div class="row">
+        <div class="col">
+            <a role="button" class="btn btn-primary btn-sm" th:href="@{/}">Inicio</a>
+        </div>
+        <div class="col">
+            <a role="button" class="btn btn-primary btn-sm" th:href="@{/admin/register}">Registrar</a>
+        </div>
+        <div class="col">
+            <a role="button" class="btn btn-info btn-sm" th:href="@{/admin/update}">Actualizar</a>
+        </div>
+        <div class="col">
+            <a role="button" class="btn btn-success btn-sm" th:href="@{/admin/history}">Hisotrial</a>
+        </div>
+        <div class="col">
+            <a role="button" class="btn btn-secondary btn-sm" th:href="@{/logout}">Salir</a>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <table class="table caption-top">
+        <caption><h4>Actualizar Inventario</h4></caption>
+        <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha de creacion</th>
+            <th scope="col">Fecha de actualizacion</th>
+            <th scope="col">Fecha de eliminacion</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Registro</th>
+        </tr>
+        </thead>
+        <tbody id="body-table">
+        </tbody>
+    </table>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
+<script type="text/javascript" th:src="@{/js/axios.min.js}" defer></script>
+<script type="text/javascript" th:src="@{/js/update.js}" defer></script>
+</html>

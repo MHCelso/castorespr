@@ -62,4 +62,14 @@ public class APIProductController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
         }
     }
+
+    @PutMapping("status/update/{id}")
+    public ResponseEntity<Object> productStatusUpdate(@PathVariable Integer id, HttpServletRequest request) {
+        return ResponseEntity.ok(request.getParameter("status").trim() + id);
+    }
+
+    @PutMapping("quantity/update/{id}")
+    public ResponseEntity<Object> productQuantityUpdate(@PathVariable Integer id, HttpServletRequest request) {
+        return ResponseEntity.ok(request.getParameter("quantity").trim() + id);
+    }
 }
