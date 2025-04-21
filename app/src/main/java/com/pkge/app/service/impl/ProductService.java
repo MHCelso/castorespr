@@ -2,8 +2,10 @@ package com.pkge.app.service.impl;
 
 import com.pkge.app.DTO.ProductDTO;
 import com.pkge.app.controller.SecurityContextController;
+import com.pkge.app.entity.History;
 import com.pkge.app.entity.Product;
 import com.pkge.app.entity.User;
+import com.pkge.app.repository.HistoryRepository;
 import com.pkge.app.repository.ProductRepository;
 import com.pkge.app.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -17,10 +19,12 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
+    private final HistoryRepository historyRepository;
 
-    public ProductService(ProductRepository productRepository, UserRepository userRepository) {
+    public ProductService(ProductRepository productRepository, UserRepository userRepository, HistoryRepository historyRepository) {
         this.productRepository = productRepository;
         this.userRepository = userRepository;
+        this.historyRepository = historyRepository;
     }
 
     public List<Product> getAllProducts() {
@@ -52,7 +56,19 @@ public class ProductService {
         product.setStatus(productDTO.getStatus());
         product.setAddedByName(user.getName());
 
-        return productRepository.save(product);
+        Product addedProduct = productRepository.save(product);
+
+        History history = new History();
+
+        history.setProductId(addedProduct.getId());
+        history.setQuantity(addedProduct.getQuantity());
+        history.setActionType("ENTRADA");
+        history.setCreatedAt(formattedDate);
+        history.setAddedByName(user.getName());
+
+        historyRepository.save(history);
+
+        return addedProduct;
     }
 
     public int updateStatusProduct(int id, String status) {
