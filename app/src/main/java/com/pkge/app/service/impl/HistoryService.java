@@ -15,7 +15,15 @@ public class HistoryService {
         this.historyRepository = historyRepository;
     }
 
-    public List<History> getAllHistory() {
+    public List<History> getAllHistory(String filter) {
+        if (filter.equals("ENTRADA")) {
+            return historyRepository.findByActionType("ENTRADA");
+        }
+
+        if (filter.equals("SALIDA")) {
+            return historyRepository.findByActionType("SALIDA");
+        }
+
         return historyRepository.findAll();
     }
 }

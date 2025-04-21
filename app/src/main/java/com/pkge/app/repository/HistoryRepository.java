@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface HistoryRepository extends JpaRepository<History, Integer> {
     List<History> findAll();
+    List<History> findByActionType(String actionType);
 }

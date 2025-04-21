@@ -3,6 +3,7 @@ package com.pkge.app.controller;
 
 import com.pkge.app.entity.History;
 import com.pkge.app.service.impl.HistoryService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,12 @@ import java.util.Map;
 public class APIHistoryController {
     private final HistoryService historyService;
 
-    @GetMapping("all")
-    public ResponseEntity<Object> getHistory() {
+    @PostMapping("all")
+    public ResponseEntity<Object> getHistory(HttpServletRequest request) {
         try {
-            List<History> history = historyService.getAllHistory();
+            String filter = request.getParameter("filter").trim();
+
+            List<History> history = historyService.getAllHistory(filter);
 
             return ResponseEntity.ok(history);
         } catch (Exception e) {

@@ -26,9 +26,20 @@
         <div class="col">
             <a role="button" class="btn btn-secondary btn-sm" th:href="@{/logout}">Salir</a>
         </div>
+        <div style="color: #1a1d20;" class="mt-5">
+
+        </div>
     </div>
 </div>
 <div class="container mt-5">
+    <div class="row-cols-1">
+        <label for="filter" class="col-form-label">Filtrar:</label>
+        <select name="filter" id="filter" class="form-select">
+            <option value="ALL" selected>TODOS</option>
+            <option value="ENTRADA">ENTRADA</option>
+            <option value="SALIDA">SALIDA</option>
+        </select>
+    </div>
     <table class="table caption-top">
         <caption><h4>Historial de Movimientos</h4></caption>
         <thead>
