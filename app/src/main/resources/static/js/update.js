@@ -79,7 +79,7 @@ function setTable(data) {
                 "responseType":'json'
             }).then(response => {
                 console.log('Estado actualizado:', response.data);
-                // window.location.reload(true);
+                window.location.reload(true);
             }).catch(error => {
                 console.error('Error al realizar la solicitud:', error);
             });
@@ -99,7 +99,7 @@ function setTable(data) {
                 "responseType":'json'
             }).then(response => {
                 console.log('cantidad actualizada:', response.data);
-                //window.location.reload(true);
+                window.location.reload(true);
             }).catch(error => {
                 console.error('Error al realizar la solicitud:', error);
             });

@@ -1,3 +1,5 @@
+SET GLOBAL time_zone = 'America/Mexico_City';
+
 CREATE DATABASE IF NOT EXISTS develop
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_general_ci;

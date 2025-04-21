@@ -54,4 +54,25 @@ public class ProductService {
 
         return productRepository.save(product);
     }
+
+    public int updateStatusProduct(int id, String status) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String deletedDate = now.format(formatter);
+        String updatedDate = now.format(formatter);
+
+        if (status.equals("ACTIVO")) {
+            deletedDate = null;
+        }
+
+        return productRepository.statusUpdateProduct(id, status, deletedDate, updatedDate);
+    }
+
+    public int updateQuantityProduct(int id, int quantity) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String updatedDate = now.format(formatter);
+
+        return productRepository.quantityUpdateProduct(id, quantity, updatedDate);
+    }
 }

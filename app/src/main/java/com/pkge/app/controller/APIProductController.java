@@ -65,11 +65,13 @@ public class APIProductController {
 
     @PutMapping("status/update/{id}")
     public ResponseEntity<Object> productStatusUpdate(@PathVariable Integer id, HttpServletRequest request) {
-        return ResponseEntity.ok(request.getParameter("status").trim() + id);
+        return ResponseEntity.ok(productService.updateStatusProduct(id, request.getParameter("status").trim()));
     }
 
     @PutMapping("quantity/update/{id}")
     public ResponseEntity<Object> productQuantityUpdate(@PathVariable Integer id, HttpServletRequest request) {
-        return ResponseEntity.ok(request.getParameter("quantity").trim() + id);
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        return ResponseEntity.ok(productService.updateQuantityProduct(id, quantity));
     }
 }

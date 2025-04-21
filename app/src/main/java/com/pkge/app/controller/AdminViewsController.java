@@ -22,4 +22,10 @@ public class AdminViewsController {
 
         return "adupdate";
     }
+
+    @GetMapping("/history")
+    public String showHistoryPage() {
+
+        return "history";
+    }
 }
