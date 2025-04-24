@@ -15,5 +15,5 @@
 #### MySQL username=admin passw=password
 
 NOTA: Esperar almenos un minuto en lo que se monta la aplicacion.
-Existe un contenedor MySQL Server para el uso de la bd (La data se carga en automatico no necesariamente se deben correr los scripts)
+Existe un contenedor MySQL Server para el uso de la bd (La data se carga en automatico)
 Y otro unicamente para servir la app = el .jar
