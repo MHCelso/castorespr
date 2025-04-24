@@ -21,10 +21,13 @@ filter.addEventListener("input", e => {
 });
 
 function setTable(data) {
-    const bodyTable = document.getElementById('h_body-table');
+    let bodyTable = document.getElementById('h_body-table');
+
+    bodyTable = ``;
 
     data.forEach(key => {
         const row = document.createElement('tr');
+        row.id = "rowID";
 
         row.innerHTML = `
         <td>${key.id}</td>
