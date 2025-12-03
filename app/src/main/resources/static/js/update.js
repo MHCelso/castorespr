@@ -124,7 +124,13 @@ function minMaxInputUpdate(element, min, zeroAllowed){
 
             spanInfo.id = 'spanInfoIdUpdate';
             spanInfo.style.color = 'red';
-            spanInfo.textContent = 'No puedes sacar';
+            spanInfo.style.fontSize = '0.7em';
+            spanInfo.style.background = 'orange';
+            spanInfo.style.padding = '5px';
+            spanInfo.style.margin = '5px';
+            spanInfo.style.borderRadius = '10px';
+            spanInfo.textContent = '¡No puedes retirar!';
+
             element.parentElement.appendChild(spanInfo);
         }
     }

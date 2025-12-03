@@ -90,7 +90,12 @@ function minMaxUsInputUpdate(element, min, max, zeroAllowed){
 
             spanInfo.id = 'spanInfo';
             spanInfo.style.color = 'red';
-            spanInfo.textContent = 'No puedes sacar';
+            spanInfo.style.fontSize = '0.7em';
+            spanInfo.style.background = 'orange';
+            spanInfo.style.padding = '5px';
+            spanInfo.style.margin = '5px';
+            spanInfo.style.borderRadius = '10px';
+            spanInfo.textContent = '¡No puedes retirar!';
             element.parentElement.appendChild(spanInfo);
         }
     }
@@ -105,8 +110,13 @@ function minMaxUsInputUpdate(element, min, max, zeroAllowed){
             const spanInfoU = document.createElement('span');
 
             spanInfoU.id = 'spanInfoIdUpdate';
-            spanInfoU.style.color = 'red';
-            spanInfoU.textContent = 'No puedes meter';
+            spanInfoU.style.color = '#000000';
+            spanInfoU.style.fontSize = '0.7em';
+            spanInfoU.style.background = 'yellow';
+            spanInfoU.style.padding = '5px';
+            spanInfoU.style.margin = '5px';
+            spanInfoU.style.borderRadius = '10px';
+            spanInfoU.textContent = '¡No puedes agregar!';
             element.parentElement.appendChild(spanInfoU);
         }
     }

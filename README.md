@@ -38,3 +38,5 @@ mvn clean package
 > Respuestas del test: [/castorespr/app/scripts/README.md](https://github.com/MHCelso/castorespr/blob/main/app/scripts/README.md)
 
 > Datos SQL: [/castorespr/app/scripts/initdb.sql]( https://github.com/MHCelso/castorespr/blob/main/app/scripts/initdb.sql)
+
+> Demostracion [video-practica](https://drive.google.com/file/d/1ZT0Ef1RoVpS2xY3oZNsn5YxWsy5HbC8o/view?usp=drive_link)
